@@ -3,6 +3,7 @@ import unittest
 from berlin_clock import BerlinClock
 
 class testBerlinClock(unittest.TestCase):
+
     def test_000000(self):
         berlin_clock = BerlinClock.from_str('00:00:00')
         expected = 'O\nOOOO\nOOOO\nOOOOOOOOOOO\nOOOO'
@@ -74,3 +75,4 @@ class testBerlinClock(unittest.TestCase):
         expected = 'Y\nRROO\nRROO\nYYRYYROOOOO\nYYOO'
         actual = berlin_clock.display()
         self.assertEqual(expected, actual)
+

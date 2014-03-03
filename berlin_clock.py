@@ -40,3 +40,4 @@ if __name__ == '__main__':
     berlin_clock = BerlinClock.from_str(time.strftime('%H:%M:%S'))
     print(current_time)
     print(berlin_clock)
+
