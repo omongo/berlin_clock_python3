@@ -15,6 +15,9 @@ class BerlinClock:
         minute_rows = self._minute_rows()
         return '{}\n{}\n{}'.format(second_row, hour_rows, minute_rows)
 
+    def display(self):
+        return self.__str__()
+
     def _second_row(self):
         return 'Y' if self.second % 2 else 'O'
 
@@ -24,9 +27,9 @@ class BerlinClock:
         return '{}\n{}'.format(hour_1, hour_2)
 
     def _minute_rows(self):
-        minute_div_five = self.minute // 5
-        min_1 = self._pattern('', minute_div_five, 11)
-        for i in reversed(range(minute_div_five)):
+        minute_floordiv_five = self.minute // 5
+        min_1 = self._pattern('', minute_floordiv_five, 11)
+        for i in reversed(range(minute_floordiv_five)):
             min_1 = ('R' if i % 3 == 2 else 'Y') + min_1
         min_2 = self._pattern('Y', self.minute % 5, 4)
         return '{}\n{}'.format(min_1, min_2)
