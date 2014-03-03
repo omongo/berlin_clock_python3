@@ -37,7 +37,7 @@ class BerlinClock:
 if __name__ == '__main__':
     import time
     current_time = time.strftime('%H:%M:%S')
-    berlin_clock = BerlinClock.from_str(time.strftime('%H:%M:%S'))
+    berlin_clock = BerlinClock.from_str(current_time)
     print(current_time)
     print(berlin_clock)
 
