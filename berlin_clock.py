@@ -10,32 +10,38 @@ class BerlinClock:
         self.second = int(second)
 
     def __str__(self):
-        second_row = self._second_row()
-        hour_rows = self._hour_rows()
-        minute_rows = self._minute_rows()
-        return '{}\n{}\n{}'.format(second_row, hour_rows, minute_rows)
+        first = self._1st_row()
+        second = self._2nd_row()
+        third = self._3rd_row()
+        fourth = self._4th_row()
+        fifth = self._5th_row()
+        return '{}\n{}\n{}\n{}\n{}'.format(first, second, third, fourth, fifth)
 
     def display(self):
         return self.__str__()
 
-    def _second_row(self):
+    def _1st_row(self):
         return 'Y' if self.second % 2 else 'O'
 
-    def _hour_rows(self):
-        hour_1 = self._pattern('R', self.hour // 5, 4)
-        hour_2 = self._pattern('R', self.hour % 5, 4)
-        return '{}\n{}'.format(hour_1, hour_2)
+    def _2nd_row(self):
+        return self._pattern('R', self.hour // 5, 4)
 
-    def _minute_rows(self):
+    def _3rd_row(self):
+        return self._pattern('R', self.hour % 5, 4)
+
+    def _4th_row(self):
         minute_floordiv_five = self.minute // 5
-        min_1 = self._pattern('', minute_floordiv_five, 11)
+        row = self._pattern('', minute_floordiv_five, 11)
         for i in reversed(range(minute_floordiv_five)):
-            min_1 = ('R' if i % 3 == 2 else 'Y') + min_1
-        min_2 = self._pattern('Y', self.minute % 5, 4)
-        return '{}\n{}'.format(min_1, min_2)
+            row = ('R' if i % 3 == 2 else 'Y') + row
+        return row
+
+    def _5th_row(self):
+        return self._pattern('Y', self.minute % 5, 4)
 
     def _pattern(self, *args):
-        return args[0] * args[1] + 'O' * (args[2] - args[1])
+        if len(args) == 3:
+            return args[0] * args[1] + 'O' * (args[2] - args[1])
 
 if __name__ == '__main__':
     import time
